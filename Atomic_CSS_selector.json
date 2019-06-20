@@ -1,0 +1,21 @@
+{
+  "plugin_type": "widget",
+  "name": "kickstarter_helper",
+  "edit_page_url": "www.kickstarter.com",
+  "form_schema": [
+    {
+      "default_value": "",
+      "field_type": "selector",
+      "name": "element_selector",
+      "label": "element_selector",
+      "options": null
+    }
+  ],
+  "description": "",
+  "options": {
+    "apply_js": "var utils = optimizely.get('utils');\n\nfunction domPathFromSelector(selector){\n    var element = document.querySelector(selector);\n    var path = [];\n    var keep_going = true;\n    while (keep_going && element.nodeType === Node.ELEMENT_NODE) {\n        var selector = element.nodeName.toLowerCase();\n        if(element.id){\n            selector = '#' + element.id;\n            keep_going = false;\n        }else{\n            var sib = element, nth = 1;\n            while (sib.nodeType === Node.ELEMENT_NODE && (sib = sib.previousSibling) && nth++);\n            nth !== 1 ?selector +=\":nth-child(\"+nth+\")\":selector +='';\n        }\n        path.unshift(selector);\n        element = element.parentNode;\n        \n    }\n    alert(path.join('>')); \n}\n\n\n \nif(!!window.optimizely_p13n_inner){ // only run this function when in editor\n  \n  domPathFromSelector(extension.element_selector);\n}",
+    "html": "",
+    "css": ".kickstarter_helper {\n  background-color: #fff575;\n  border-bottom: 1px solid #e0d769;\n  color: #555;\n  padding: 10px;\n  font-weight: bold;\n  text-align: center;\n  font-size: 20px;\n}",
+    "undo_js": "var extensionElement = document.getElementById('optimizely-extension-' + extension.$instance);\nif (extensionElement) {\n  extensionElement.parentElement.removeChild(extensionElement);\n}\n"
+  }
+}
