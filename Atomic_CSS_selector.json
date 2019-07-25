@@ -1,7 +1,7 @@
 {
   "plugin_type": "widget",
-  "name": "kickstarter_helper",
-  "edit_page_url": "www.kickstarter.com",
+  "name": "Absolute_Selector_Extension",
+  "edit_page_url": "www.atticandbutton.us",
   "form_schema": [
     {
       "default_value": "",
